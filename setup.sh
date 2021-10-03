@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mv .emacs ~
+cp .emacs ~
 
 cd ~
 mkdir tsuigeo
