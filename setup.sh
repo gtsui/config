@@ -3,14 +3,13 @@
 mv .emacs ~
 
 cd ~
-rm -rf *
 mkdir tsuigeo
 cd tsuigeo
 mkdir bin
 mkdir src
 mkdir data
 mkdir etc
-
+mkdir tmp && mkdir tmp/downloads
 
 #install emacs
 cd ~
