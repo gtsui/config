@@ -15,3 +15,7 @@ mkdir tmp && mkdir tmp/downloads
 cd ~
 sudo apt-get install emacs
 echo "alias emacs='emacs -nw'" >> .bashrc
+
+#install ssh server
+sudo apt-get install openssh-server ii
+
