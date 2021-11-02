@@ -12,11 +12,6 @@
 (setq auto-save-default nil)
 (kill-buffer "*scratch*")
 
-;; Tab spacing
-(setq-default tab-width 2)
-(setq-default indent-tabs-mode nil)
-(setq js-indent-level 2)
-
 ;; Display column number
 (setq column-number-mode t)
 
@@ -28,6 +23,11 @@
 
 ;; Key bindings  
 (global-set-key "\C-z" 'undo)
+
+;; Tab spacing
+(setq-default tab-width 2)
+(setq-default indent-tabs-mode nil)
+(setq js-indent-level 2)
 
 ;; Recognize custom file extensions
 (setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
@@ -49,3 +49,33 @@
 
 ;; Show matching parentheses
 (show-paren-mode 1)
+
+;; Ivy
+(use-package ivy
+  :diminish
+  :bind (("C-s" . swiper)
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
+  :config
+  (ivy-mode 1))
+(ivy-mode 1)
+
+;; ;; Company
+;; (use-package company
+;;   :config
+;;   (add-hook 'after-init-hook 'global-company-mode))
+
+;; Solidity
+;; M-x package-install [RET] solidity-mode
+(require 'solidity-mode)
+
