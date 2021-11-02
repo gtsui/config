@@ -9,3 +9,6 @@ mkdir src
 mkdir data
 mkdir etc
 mkdir tmp && mkdir tmp/downloads
+
+# Set path
+echo 'export PATH="$PATH:/home/tsuigeo/tsuigeo/bin"' >> .bashrc
