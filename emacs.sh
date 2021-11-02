@@ -1,7 +1,9 @@
 #!/bin/bash
 
-#Copy config file
-cp .emacs ~
+DIR=`pwd`
+
+#link config file
+ln .emacs ~/.emacs
 
 #Install emacs
 cd ~
