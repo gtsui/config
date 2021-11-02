@@ -6,5 +6,7 @@ DIR=`pwd`
 ln .emacs ~/.emacs
 
 # Install emacs
-cd ~
 sudo apt-get install emacs
+cd ~
+echo "alias emacs='emacs -mm'" >> .bashrc
+

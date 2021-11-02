@@ -32,3 +32,20 @@
 ;; Recognize custom file extensions
 (setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.ejs$" . html-mode) auto-mode-alist))
+
+;; Package repositories
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+;; Install use-package
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(require 'use-package)
+
+;; Show matching parentheses
+(show-paren-mode 1)
