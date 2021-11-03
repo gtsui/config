@@ -23,6 +23,8 @@
 
 ;; Key bindings  
 (global-set-key "\C-z" 'undo)
+(global-set-key "\C-y" 'clipboard-yank)
+(global-set-key "\M-w" 'clipboard-kill-ring-save)
 
 ;; Tab spacing
 (setq-default tab-width 2)
@@ -70,6 +72,10 @@
   (ivy-mode 1))
 (ivy-mode 1)
 
+;; (use-package ivy-rich
+;;   :init
+;;   (ivy-rich-mode 1))
+
 ;; ;; Company
 ;; (use-package company
 ;;   :config
@@ -78,4 +84,5 @@
 ;; Solidity
 ;; M-x package-install [RET] solidity-mode
 (require 'solidity-mode)
+(set (make-local-variable 'c-basic-offset) 2)
 
