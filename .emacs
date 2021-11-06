@@ -30,6 +30,7 @@
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 (setq js-indent-level 2)
+(setq-default c-basic-offset 2)
 
 ;; Recognize custom file extensions
 (setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
@@ -83,6 +84,11 @@
 
 ;; Solidity
 ;; M-x package-install [RET] solidity-mode
+(setq solidity-solc-path "/home/tsuigeo/.config/truffle/compilers/node_modules/soljson-v0.5.16+commit.9c3226ce.js")
 (require 'solidity-mode)
-(set (make-local-variable 'c-basic-offset) 2)
 
+;; Solidity indentation
+(add-hook 'solidity-mode-hook
+          (lambda ()
+            (setq c-basic-offset 2)
+            (setq tab-width 2)))
