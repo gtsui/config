@@ -16,7 +16,11 @@
 (setq column-number-mode t)
 
 ;; Set Font Size
-(set-face-attribute 'default nil :height 75)
+(set-face-attribute 'default nil :height 125)
+
+;; Set Transparency
+(set-frame-parameter (selected-frame) 'alpha '(85 85))
+(add-to-list 'default-frame-alist '(alpha 85 85))
 
 ;; Set Theme
 (load-theme 'tango-dark)
@@ -31,6 +35,12 @@
 (setq-default indent-tabs-mode nil)
 (setq js-indent-level 2)
 (setq-default c-basic-offset 2)
+
+;; Show matching parentheses
+(show-paren-mode 1)
+
+;; Display line numbers
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;; Recognize custom file extensions
 (setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
@@ -50,10 +60,9 @@
   (package-install 'use-package))
 (require 'use-package)
 
-;; Show matching parentheses
-(show-paren-mode 1)
 
 ;; Ivy
+;; M-x package-install [RET] ivy
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
@@ -77,6 +86,10 @@
 ;;   :init
 ;;   (ivy-rich-mode 1))
 
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
 ;; ;; Company
 ;; (use-package company
 ;;   :config
@@ -86,6 +99,7 @@
 ;; M-x package-install [RET] solidity-mode
 (setq solidity-solc-path "/home/tsuigeo/.config/truffle/compilers/node_modules/soljson-v0.5.16+commit.9c3226ce.js")
 (require 'solidity-mode)
+
 
 ;; Solidity indentation
 (add-hook 'solidity-mode-hook
