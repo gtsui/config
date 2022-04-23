@@ -40,6 +40,7 @@
 (global-set-key (kbd "C-c j") `tab-bar-switch-to-prev-tab)
 (global-set-key (kbd "C-c l") `tab-bar-switch-to-next-tab)
 (global-set-key (kbd "C-c t") `(lambda () (interactive) (tab-bar-new-tab-to -1)))
+(global-set-key (kbd "C-c T") `tab-bar-undo-close-tab)
 (global-set-key (kbd "C-c w") `tab-close)
 (setq tab-bar-close-button-show nil
       tab-bar-new-button-show nil)
@@ -69,7 +70,8 @@
 ;; Initialize package sources
 (require 'package)
 
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+(require 'package)
+(setq package-archives '(("melpa" . "http://melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
                          ("elpa" . "https://elpa.gnu.org/packages/")))
 
@@ -127,6 +129,13 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+;; magit for better git interface
+;; magic package not found for some reason. Install manually
+;; with package-install-file and .tar file downloaded from MELPA
+(use-package magit
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
 ;(use-package ivy-rich)
 ;(ivy-rich-mode 1)
 
@@ -168,7 +177,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("da53441eb1a2a6c50217ee685a850c259e9974a8fa60e899d393040b4b8cc922" default))
- '(package-selected-packages '(doom-themes use-package)))
+ '(package-selected-packages '(with-editor magit doom-themes use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
