@@ -37,8 +37,10 @@
 (tab-bar-mode 1)
 (global-set-key (kbd "C-M-j") `tab-bar-switch-to-prev-tab)
 (global-set-key (kbd "C-M-l") `tab-bar-switch-to-next-tab)
-(global-set-key (kbd "C-x t") `(lambda () (interactive) (tab-bar-new-tab-to -1)))
-(global-set-key (kbd "C-x w") `tab-close)
+(global-set-key (kbd "C-c j") `tab-bar-switch-to-prev-tab)
+(global-set-key (kbd "C-c l") `tab-bar-switch-to-next-tab)
+(global-set-key (kbd "C-c t") `(lambda () (interactive) (tab-bar-new-tab-to -1)))
+(global-set-key (kbd "C-c w") `tab-close)
 (setq tab-bar-close-button-show nil
       tab-bar-new-button-show nil)
 (set-face-attribute 'tab-bar-tab nil :inherit 'doom-modeline-panel :background nil :foreground nil)
@@ -57,7 +59,7 @@
 
 ;; Display line numbers
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(set-face-attribute 'line-number nil :foreground "grey70")
+(set-face-attribute 'line-number nil :foreground "grey50")
 
 ;; Recognize custom file extensions
 (setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
