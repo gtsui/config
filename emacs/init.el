@@ -143,7 +143,6 @@
 ;; solidity-mode
 (setq solidity-solc-path "/usr/bin/solc")
 (use-package solidity-mode)
-(use-package 'company-solidity)
 (add-hook 'solidity-mode-hook
           (lambda ()
             (setq c-basic-offset 2)
