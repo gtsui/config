@@ -135,11 +135,27 @@
 ;         ("C-x C-f" . counsel-find-file)))
          
 
+;; company-mode for autocompletion
+(use-package company
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
+
+;; solidity-mode
+(setq solidity-solc-path "/usr/bin/solc")
+(use-package solidity-mode)
+(use-package 'company-solidity)
+(add-hook 'solidity-mode-hook
+          (lambda ()
+            (setq c-basic-offset 2)
+            (setq tab-width 2)))
 
 
+;; rust-mode
+(use-package rust-mode)
+(setq rust-indent-offset 2)
 
-
-
+;; elm-mode
+(use-package elm-mode)
 
 
 
