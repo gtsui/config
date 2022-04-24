@@ -65,7 +65,6 @@
 ;; Recognize custom file extensions
 (setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.ejs$" . html-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.ts$" . javascript-mode) auto-mode-alist))
 
 ;; Initialize package sources
 (require 'package)
@@ -129,6 +128,13 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+;; which-key for displaying keybindings
+(use-package which-key
+  :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 1.0))
+
 ;; magit for better git interface
 ;; magic package not found for some reason. Install manually
 ;; with package-install-file and .tar file downloaded from MELPA
@@ -140,10 +146,10 @@
 ;(ivy-rich-mode 1)
 
 
-;(use-package counsel
-;  :bind (("M-x" . counsel-M-x)
-;         ("C-x b" . counsel-ibuffer)
-;         ("C-x C-f" . counsel-find-file)))
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+         ("C-x b" . counsel-ibuffer)
+         ("C-x C-f" . counsel-find-file)))
          
 
 ;; company-mode for autocompletion
@@ -167,7 +173,23 @@
 ;; elm-mode
 (use-package elm-mode)
 
+;; language servers
+;; For typescript integration, we need to install the typescript
+;; language server first. See instructions below:
+;; https://emacs-lsp.github.io/lsp-mode/page/lsp-typescript/
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c p")
+  :config
+  (lsp-enable-which-key-integration t))
 
+;; typescript-mode
+(use-package typescript-mode
+  :mode "\\.ts\\'"
+  :hook (typescript-mode . lsp-deferred)
+  :config
+  (setq typescript-indent-level 2))
 
 
 (custom-set-variables
@@ -177,7 +199,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("da53441eb1a2a6c50217ee685a850c259e9974a8fa60e899d393040b4b8cc922" default))
- '(package-selected-packages '(with-editor magit doom-themes use-package)))
+ '(package-selected-packages
+   '(typescript-mode which-key lsp-mode with-editor magit doom-themes use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
