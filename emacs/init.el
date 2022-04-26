@@ -24,30 +24,10 @@
 (set-frame-parameter (selected-frame) 'alpha '(85 85))
 (add-to-list 'default-frame-alist '(alpha 85 85))
 
-;; Set Theme
-;; Be careful of the 't' parameter as loading custom themes can be dangerous
-(load-theme 'doom-outrun-electric t)
-
 ;; Key bindings  
 (global-set-key "\C-z" 'undo)
 (global-set-key "\C-y" 'clipboard-yank)
 (global-set-key "\M-w" 'clipboard-kill-ring-save)
-
-;; tab-bar customizations
-(tab-bar-mode 1)
-(global-set-key (kbd "C-M-j") `tab-bar-switch-to-prev-tab)
-(global-set-key (kbd "C-M-l") `tab-bar-switch-to-next-tab)
-(global-set-key (kbd "C-c j") `tab-bar-switch-to-prev-tab)
-(global-set-key (kbd "C-c l") `tab-bar-switch-to-next-tab)
-(global-set-key (kbd "C-c t") `(lambda () (interactive) (tab-bar-new-tab-to -1)))
-(global-set-key (kbd "C-c T") `tab-bar-undo-close-tab)
-(global-set-key (kbd "C-c w") `tab-close)
-(setq tab-bar-close-button-show nil
-      tab-bar-new-button-show nil)
-(set-face-attribute 'tab-bar-tab nil :inherit 'doom-modeline-panel :background nil :foreground nil)
-(set-face-attribute 'tab-bar-tab-inactive nil :background "gray30" :foreground "white")
-(set-face-attribute 'tab-bar nil :background "gray30")
-(setq tab-bar-separator " | ")
 
 ;; Tab spacing
 (setq-default tab-width 2)
@@ -84,6 +64,38 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; doom-modeline for more aesthetic mode line
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 15)))
+
+;; doom-themes for better emacs themes integration with plugins
+;; doom-themes package not found for some reason. Install manually
+;; with package-install-file and .tar file downloaded from MELPA
+(use-package doom-themes)
+
+;; Set Theme
+;; Be careful of the 't' parameter as loading custom themes can be dangerous
+(load-theme 'doom-outrun-electric t)
+
+;; tab-bar customizations
+(tab-bar-mode 1)
+(global-set-key (kbd "C-M-j") `tab-bar-switch-to-prev-tab)
+(global-set-key (kbd "C-M-l") `tab-bar-switch-to-next-tab)
+(global-set-key (kbd "C-c j") `tab-bar-switch-to-prev-tab)
+(global-set-key (kbd "C-c l") `tab-bar-switch-to-next-tab)
+(global-set-key (kbd "C-TAB") `tab-bar-switch-to-next-tab)
+(global-set-key (kbd "C-c t") `(lambda () (interactive) (tab-bar-new-tab-to -1)))
+(global-set-key (kbd "C-c T") `tab-bar-undo-close-tab)
+(global-set-key (kbd "C-c w") `tab-close)
+(setq tab-bar-close-button-show nil
+      tab-bar-new-button-show nil)
+(set-face-attribute 'tab-bar-tab nil :inherit 'doom-modeline-panel :background nil :foreground nil)
+(set-face-attribute 'tab-bar-tab-inactive nil :background "gray30" :foreground "white")
+(set-face-attribute 'tab-bar nil :background "gray30")
+(setq tab-bar-separator " | ")
+
 ;; ivy (for completion mechanism)
 (use-package ivy
   :diminish
@@ -108,21 +120,9 @@
 
 (use-package swiper :ensure t)
 
-;; doom-modeline for more aesthetic mode line
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 15)))
-
-
 ;; Run the following command manually so that mode line icons display correctly:
 ;; M-x all-the-icons-install-fonts
 (use-package all-the-icons)
-
-;; doom-themes for better emacs themes integration with plugins
-;; doom-themes package not found for some reason. Install manually
-;; with package-install-file and .tar file downloaded from MELPA
-;;(use-package doom-themes)
 
 ;; rainbow-delimiters for easy visualization of delimiters
 (use-package rainbow-delimiters
@@ -190,7 +190,6 @@
   :hook (typescript-mode . lsp-deferred)
   :config
   (setq typescript-indent-level 2))
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
